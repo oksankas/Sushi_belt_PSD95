@@ -3,3 +3,5 @@ Here we adapted the sushi-belt model (Williams et al., 2016) to model the distri
 This code is design to simulate and identify extended sushi-belt model describing trafficking of proteins and RNA within neurons.
 
 The model is based on the code from [that repository](https://github.com/ahwillia/Williams-etal-Synaptic-Transport) and [paper](http://dx.doi.org/10.7554/eLife.20556).
+
+Adapted Sushi-Belt model for Synapse Proteomics © 2025 by Oksana Sorokina is licensed under CC BY 4.0 
