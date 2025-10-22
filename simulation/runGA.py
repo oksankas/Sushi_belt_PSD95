@@ -25,7 +25,7 @@ from sko.GA import GA
 
 import pandas as pd
 
-fitdt = pd.read_csv('data/Distr.csv')
+fitdt = pd.read_csv('../data/Distr.csv')
 seg_idx = sushibelt.prepare_seg_index(h, fitdt, delta=10)
 
 initTime = time.time()

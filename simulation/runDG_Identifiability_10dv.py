@@ -8,7 +8,7 @@ import os
 import logging
 FORMAT = '%(asctime)s :: %(levelname)s :: %(message)s'
 logging.basicConfig(format=FORMAT,level=logging.INFO)
-log = logging.getLogger("Edita_GA-logger")
+log = logging.getLogger("GA-logger")
 
 valN = int(os.environ['valnum'])
 
@@ -16,7 +16,7 @@ valN = int(os.environ['valnum'])
 logFolder = os.environ['odir']
 log.info(f"valN={valN}, logdir={logFolder}")
 
-import Edita_DG_10reg_10dv_model as model
+import DG_10reg_10dv_model as model
 import Identifiability_PSO_GA_restart as rn
 
 # Check whether the specified path exists or not

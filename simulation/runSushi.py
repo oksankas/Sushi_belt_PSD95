@@ -3,6 +3,10 @@
 #%%bash
 #nrnivmodl
 
+import sys
+
+sys.path.append('../')
+
 from neuron import h
 import numpy as np
 

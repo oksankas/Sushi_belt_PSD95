@@ -17,7 +17,7 @@ from PyNeuronToolbox.morphology import dist_between,allsec_preorder
 import logging
 FORMAT = '%(asctime)s :: %(levelname)s :: %(message)s'
 logging.basicConfig(format=FORMAT,level=logging.INFO)
-log = logging.getLogger("Edita_GA-logger")
+log = logging.getLogger("GA-logger")
 
 import pandas as pd
 from scipy.stats import qmc

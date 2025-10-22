@@ -24,9 +24,8 @@ valnum=$2
 seed=255
 
 mkdir -p odir
-#cp Edita_20reg_1dv_model.py runEdita_20reg_1dv_3M_Identifiability.py Identifiability_PSO_GA.py ${odir}/
 export odir valnum seed
 echo "$SGE_TASK_ID" "$odir" "$valnum" "$seed"
 
 # Run the program
-python3 runEdita3M_DG_Identifiability.py
+python3 run3M_DG_Identifiability.py

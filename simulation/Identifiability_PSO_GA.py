@@ -8,7 +8,7 @@ import numpy as np
 import logging
 FORMAT = '%(asctime)s :: %(levelname)s :: %(message)s'
 logging.basicConfig(format=FORMAT,level=logging.INFO)
-log = logging.getLogger("Edita_GA-logger")
+log = logging.getLogger("GA-logger")
 
 from sko.GA import RCGA
 from sko.PSO import PSO

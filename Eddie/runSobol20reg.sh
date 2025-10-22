@@ -29,9 +29,8 @@ if [ -n "$2" ]
 fi
 
 mkdir -p odir
-#cp Edita_20reg_1dv_model.py runEdita_20reg_1dv_3M_Identifiability.py Identifiability_PSO_GA.py ${odir}/
 export odir chunkSize seed
 echo "$SGE_TASK_ID" "$odir" "$chunkSize" "$seed"
 
 # Run the program
-python3 runEdita_20reg_1dv_3M_Sobol.py
+python3 run_20reg_1dv_3M_Sobol.py

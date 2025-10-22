@@ -18,4 +18,4 @@ nrnivmodl
 
 
 # Run the program
-python3 runEdita3W_Identifiability.py
+python3 run3W_CA1_Identifiability.py
