@@ -6,8 +6,39 @@ The model is based on the code from [that repository](https://github.com/ahwilli
 
 Adapted Sushi-Belt model for Synapse Proteomics © 2025 by Oksana Sorokina is licensed under CC BY 4.0 
 
-To set up the environment use:
+# Installation
 
-conda create -n <sushi belt> --file req.txt
+Install the local version of conda or Anaconda, then create and configure environment as follow:
+```
+conda update -n base -c defaults conda
+conda create -n sushibelt3.9 python=3.9
+conda activate sushibelt3.9
+conda install -c conda-forge numpy matplotlib notebook ipython scipy pandas
+pip3 install neuron==8.2.7
+pip3 install scikit-opt
+```
 
-If package PyNeuron-Toolbox is not installed go to https://github.com/lptolik/PyNeuron-Toolbox and follow instructions there
+For analysis we will need additional package, so clone source code from the GitHub repository https://github.com/lptolik/PyNeuron-Toolbox and install it:
+```
+cd /path/to/PyNeuron-Toolbox/reposidory
+python3 setup.py install
+```
+
+To check that the code is working run following commands:
+```
+cd /path/to/Sushi_belt_PSD95
+cd simulations
+nrnivmodl
+
+chunkSize=512
+seed=255
+
+odir=test
+
+mkdir -p odir
+export odir seed
+echo "$odir" "$seed"
+
+# Run the program
+python3 run3M_DG_optimization.py
+```
