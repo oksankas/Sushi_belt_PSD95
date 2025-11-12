@@ -13,9 +13,9 @@ Install the local version of conda or Anaconda, then create and configure enviro
 conda update -n base -c defaults conda
 conda create -n sushibelt3.9 python=3.9
 conda activate sushibelt3.9
-conda install -c conda-forge numpy matplotlib notebook ipython scipy pandas
+conda install -c conda-forge numpy matplotlib notebook ipython scipy 
 pip3 install neuron==8.2.7
-pip3 install scikit-opt
+pip3 install pandas scikit-opt
 ```
 
 For analysis we will need additional package, so clone source code from the GitHub repository https://github.com/lptolik/PyNeuron-Toolbox and install it:
@@ -25,6 +25,16 @@ python3 setup.py install
 ```
 
 To check that the code is working run following commands:
+
+```
+cd /path/to/Sushi_belt_PSD95
+cd simulations
+nrnivmodl
+
+python3 runSushi.py
+```
+
+The following code would run a fully fledged optimisation run, which could take a while:
 ```
 cd /path/to/Sushi_belt_PSD95
 cd simulation
