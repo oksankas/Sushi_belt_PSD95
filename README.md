@@ -27,7 +27,7 @@ python3 setup.py install
 To check that the code is working run following commands:
 ```
 cd /path/to/Sushi_belt_PSD95
-cd simulations
+cd simulation
 nrnivmodl
 
 chunkSize=512
