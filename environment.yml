@@ -1,0 +1,43 @@
+name: mypython
+channels:
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - bzip2=1.0.8=h7b6447c_0
+  - ca-certificates=2024.3.11=h06a4308_0
+  - ld_impl_linux-64=2.38=h1181459_1
+  - libffi=3.3=he6710b0_2
+  - libgcc-ng=9.1.0=hdf63c60_0
+  - libstdcxx-ng=9.1.0=hdf63c60_0
+  - libuuid=1.0.3=h7f8727e_2
+  - ncurses=6.3=h7f8727e_2
+  - openssl=1.1.1w=h7f8727e_0
+  - pip=24.0=py310h06a4308_0
+  - python=3.10.4=h12debd9_0
+  - readline=8.1.2=h7f8727e_1
+  - setuptools=69.5.1=py310h06a4308_0
+  - sqlite=3.38.5=hc218d9a_0
+  - tk=8.6.12=h1ccaba5_0
+  - wheel=0.43.0=py310h06a4308_0
+  - xz=5.2.5=h7f8727e_1
+  - zlib=1.2.12=h7f8727e_2
+  - pip:
+      - contourpy==1.2.1
+      - cycler==0.12.1
+      - find-libpython==0.4.0
+      - fonttools==4.53.0
+      - kiwisolver==1.4.5
+      - matplotlib==3.9.0
+      - neuron==8.2.4
+      - numpy==1.26.4
+      - packaging==24.1
+      - pandas==2.2.2
+      - pillow==10.3.0
+      - pyparsing==3.1.2
+      - python-dateutil==2.9.0.post0
+      - pytz==2024.1
+      - scikit-opt==0.6.6
+      - scipy==1.11.3
+      - six==1.16.0
+      - tzdata==2024.1
+prefix: /exports/csce/eddie/inf/groups/OSorokina_Neuron/anaconda/envs/mypython
