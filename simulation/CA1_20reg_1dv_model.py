@@ -40,6 +40,7 @@ import pandas as pd
 import sushibelt
 import time
 
+######## MOdel initialisation and parameters definition as described in William's et al, 2016#########
 def sushi_system(a, b, c, d, l):
     """
     Returns a matrix A, such that dx/dt = A*x
@@ -50,9 +51,9 @@ def sushi_system(a, b, c, d, l):
       The first N elements correspond to concentrations of u (molecules in transit)
       The second half correspond to concentrations of u-star (active molecules)
     The trafficking rate constants along the microtubules are given by the vectors "a" and "b"
-    The rate constants for u turning into u* is given by the vector "c"
-    The rate constants for u* turning into u is given by the vector "d"
-    The rate constants for the degradation of u* is given by the vector "l"
+    The rate constants for u turning into u* is given by the vector "c" (detachment)
+    The rate constants for u* turning into u is given by the vector "d" (reattachment)
+    The rate constants for the degradation of u* is given by the vector "l" (in manuscript "l" is changed to "d" as most common for degradation, and reattachment is not used))
     """
     # number of compartments
     N = len(l)
@@ -241,6 +242,8 @@ for i in range(N):
     ll.append(i)
     segIdx[abbCA1[i]] = ll
 
+###### Read experimental data from 3M mice (PSD95 puncta density): Day0, Day7, normalisation #########
+
 expD=pd.read_csv('../data/CA1_gradient.csv')
 subreg = ['CA1so', 'CA1sr', 'CA1slm']
 
@@ -295,7 +298,7 @@ lowb=np.array([0,-18,0,-18,-18,1.0e-07,1.0e-07,1.0e-07,1.0e-07,1.0e-07,1.0e-07,1
 upbga=np.array([1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 bnds=Bounds(lb=lowb,ub=upbga)
 Ndim=len(lowb)
-######################################################
+###################################################### Optimisation cost function
 
 cfCounter = 0
 
