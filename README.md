@@ -12,10 +12,10 @@ This is the research code only -NOT intended to be a finished product but rather
 
 Repository is structured as following: 
 
-- Data folder contains the respective experimental data for PSD95 puncta density and intensity for CA1 and DG neurons, for 3 month (3M), 3 weeks (3W) and 18 month (18M) mice, respectively
-- Py_notebooks -contains notebooks for specific tasks,
-- Eddie - GridEngine scripts for execution of the code on HPC platform Eddie.
-- Simulation -folder organized to support the simulation pipeline. it contains: 
+ - Data folder contains the respective experimental data for PSD95 puncta density and intensity for CA1 and DG neurons, for 3 month (3M), 3 weeks (3W) and 18 month (18M) mice, respectively
+ - Py_notebooks -contains notebooks for specific tasks,
+ - Eddie - GridEngine scripts for execution of the code on HPC platform Eddie.
+ - Simulation -folder organized to support the simulation pipeline. it contains: 
    * basic model e.g. DG_density_10reg_1dv_model_dvonly.py - for Dentate Gyrus neuron cell and CA1_20reg_1dv_model.py - for CA1 neuron. Those models are used in the final simulation, which gave the best solution, however the intermediate versions are also stored, like CA1_3dv_PSO_GA.py, which is the model with 3 degradation rate.
    * simulation framework, e.g. Optimize_PSO_GA_restart.py
    * simulation experiment code, which combine model, simulation parameters etc., e.g. run3M_DG_10dv_optimization.py. 
