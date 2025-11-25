@@ -1,7 +1,14 @@
+
+#### This is full pipeline for  simulation sushi-belt model for CA1 pyramidal cell from model initiation to experimental data mapping to the model compartment, followed with PSO (particle swarm optimisation) and GA (Genetic algorithm) optimisation.
+#### Here is the final model configuration, with individual demand values for each of 20 neuron compartments and Dva and Dvb degradations rates that are estimated from the linear regression model.####
+
+
 # If in Jupyter or within ipython run both following lines
 # If in the terminal run nrnivmodl to load Neuron engine
 # %%bash
 # nrnivmodl
+
+#### Set up simulation environment ####
 
 from neuron import h
 import numpy as np
@@ -37,6 +44,8 @@ import pandas as pd
 import sushibelt
 import time
 
+#### Defining of sushi belt model #####
+
 def sushi_system(a, b, c, d, l):
     """
     Returns a matrix A, such that dx/dt = A*x
@@ -49,8 +58,9 @@ def sushi_system(a, b, c, d, l):
     The trafficking rate constants along the microtubules are given by the vectors "a" and "b"
     The rate constants for u turning into u* is given by the vector "c"
     The rate constants for u* turning into u is given by the vector "d"
-    The rate constants for the degradation of u* is given by the vector "l"
+    The rate constants for the degradation of u* is given by the vector "l" (NOTE: in the manuscript "l" for degradation was changed to "d" as it more common definition of the degradation rate, and and reattachment (d) was not used in this model)
     """
+    
     # number of compartments
     N = len(l)
 
@@ -117,7 +127,8 @@ def sushi_system(a, b, c, d, l):
         A[i + N, i + N] = -l[i]
 
     return A
-
+    
+#### Defining the trafficking solution ####
 
 def trafficking_solution(utarg):
     """ Solve the problem by tuning trafficking rates, like Figs 1 and 2. """
@@ -215,7 +226,7 @@ def calcUtrace(par,delta=1e-7):
 
 log.info("function defined")
 
-##### Read data ######
+##### Read and normalise experimental data ######
 #seglist in pre-order
 sec_list = allsec_preorder(h)
 seg_list = []
@@ -270,6 +281,8 @@ for i in range(expD.shape[0]):
 
 log.info("data read")
 
+#### Defining of cost function ####
+
 cfCounter = 0
 dumpCSV = True
 def costFunction(par):
@@ -292,6 +305,8 @@ def costFunction(par):
     log.info(f'Cost function done: cost={cost}. ({FinalTime})')
     return cost
 
+#### Run PSO optimisation ####
+
 lowb=np.array([0, -18, -18, 1e-3, 1e-3, 1e-3, 1e-3])
 upbga=np.array([1, -1, -1, 1-1e-7, 1, 1, 1])
 bnds=Bounds(lb=lowb,ub=upbga)
@@ -301,12 +316,19 @@ pso = PSO(func=costFunction, n_dim=7, pop=40, max_iter=15, lb=lowb,
         ub=upbga, w=0.8, c1=0.5, c2=0.5)
 pso.run()
 log.info(f'best_x is {pso.gbest_x}, best_y is {pso.gbest_y}')
+
+## Plot PSO results"
+
 plt.plot(pso.gbest_y_hist)
 plt.savefig('CA1_PSO.png')
 plt.savefig('CA1_PSO.pdf')
 
+#### Run Nelder-Mead minimising best cost obtained from PSO ####
+
 log.info('Run Nelder-Mead on PSO result')
 result = minimize(costFunction, pso.gbest_x, method='nelder-mead',bounds=bnds,options={'maxiter':100})
+
+#### Run GA optimisation from the best PSO+Nelder-Mead result ####
 
 log.info('Prepare GA population')
 psox=pso.pbest_x
@@ -322,6 +344,8 @@ log.info('GA starts')
 ga = RCGA(func=costFunction, n_dim=7, size_pop=14, max_iter=50000, prob_mut=0.01, lb=lowb,
         ub=upbga)
 ga.Chrom = (gainit-lowb)/(upbga-lowb)
+
+#### After 200 iterations of GA minimise the optimal cost with Nelder-Mead and save the best solution #####
 
 for cnt in range(200):
     log.info(f'Continue GA {cnt}')
