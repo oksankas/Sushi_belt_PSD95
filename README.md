@@ -1,24 +1,29 @@
-Here we adapted the sushi-belt model (Williams et al., 2016) to model the distribution of endogenous post-synaptic density protein 95 (PSD95) across the dendritic tree of excitatory neuron types in intact mouse brain. PSD95 is a highly abundant scaffolding protein in excitatory synapses that interacts with more than 100 postsynaptic proteins, organising them into complexes and super-complexes which facilitate the processing of incoming signals into the cell. PSD95 is essential for learning and memory and its mutations are associated with neurodevelopmental and behavioural disorders, e.g. Schizophrenia, ASD and bipolar disease. Our modelling of PSD95 distribution reveals which cellular processes can feasibly explain the complex protein distribution patterns observed in excitatory neuron types. Additionally, our model implicates specific cellular processes that alter during development and ageing in the brain to produce changed patterns of molecular distribution of synaptic proteins
-
-This code is designed to simulate and identify extended sushi-belt model describing trafficking of proteins and RNA within neurons.
-
-The model is based on the code from [that repository](https://github.com/ahwillia/Williams-etal-Synaptic-Transport) and [paper](http://dx.doi.org/10.7554/eLife.20556).
-
 Adapted Sushi-Belt model for Synapse Proteomics © 2025 by Oksana Sorokina is licensed under CC BY 4.0 
 
 The multiple versions of the same function may stem from legacy code, which was used to evaluate preliminary model structure. Once the structure was decided the code was forked into model definition, simulation infrastructure and simulation experiment script hence multiple versions. 
 
 This is the research code only -NOT intended to be a finished product but rather an adjunct to simulations we describe in the paper: https://www.biorxiv.org/content/10.1101/2025.07.31.667853v1.abstract
 
+
+Here we adapted the sushi-belt model (Williams et al., 2016) to model the distribution of endogenous post-synaptic density protein 95 (PSD95) across the dendritic tree of excitatory neuron types in intact mouse brain. PSD95 is a highly abundant scaffolding protein in excitatory synapses that interacts with more than 100 postsynaptic proteins, organising them into complexes and super-complexes which facilitate the processing of incoming signals into the cell. PSD95 is essential for learning and memory and its mutations are associated with neurodevelopmental and behavioural disorders, e.g. Schizophrenia, ASD and bipolar disease. Our modelling of PSD95 distribution reveals which cellular processes can feasibly explain the complex protein distribution patterns observed in excitatory neuron types. Additionally, our model implicates specific cellular processes that alter during development and ageing in the brain to produce changed patterns of molecular distribution of synaptic proteins
+
+This code is designed to simulate and identify extended sushi-belt model describing trafficking of proteins and RNA within neurons.
+
+The model is based on the code from [that repository](https://github.com/ahwillia/Williams-etal-Synaptic-Transport) and [paper](http://dx.doi.org/10.7554/eLife.20556).
+
 Repository is structured as following: 
 
  - Data folder contains the respective experimental data for PSD95 puncta density and intensity for CA1 and DG neurons, for 3 month (3M), 3 weeks (3W) and 18 month (18M) mice, respectively
- - Py_notebooks -contains notebooks for specific tasks.
+ - Py_notebooks -contains notebooks for specific tasks of visualisation.
  - Eddie - GridEngine scripts for execution of the code on HPC platform Eddie.
  - Simulation -folder organized to support the simulation pipeline. it consists of: 
    * basic model e.g. DG_density_10reg_1dv_model_dvonly.py - for Dentate Gyrus neuron cell and CA1_20reg_1dv_model.py - for CA1 neuron. Those models are used in the final simulation, which gave the best solution, however the intermediate versions are also stored, like CA1_3dv_PSO_GA.py, which is the model with 3 degradation rate.
    * simulation framework, e.g. Optimize_PSO_GA_restart.py
    * simulation experiment code, which combine model, simulation parameters etc., e.g. run3M_DG_10dv_optimization.py. 
+   
+NOTE: Files that correspond to the best solution presented in the paper are in Simulation folder, named as: 1) CA1_PSO_GA.py (file that contains the full pipeline for simulation and optimisation of sushi belt model in CA1 morphology);
+2) DG_density_10reg_1dv_model_dvonly.py (file that contains the final model for DG cell); 3) run3M_DG_10dv_optimization.py (optimisation script for final DG model)
+For those three files we provide more detailed annotation. Other files in this and other folders correspond to various states of the model development and are organised under the same principle
    
 # Installation
 
