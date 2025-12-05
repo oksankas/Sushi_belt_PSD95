@@ -21,7 +21,7 @@ Repository is structured as following:
    * simulation framework, e.g. Optimize_PSO_GA_restart.py
    * simulation experiment code, which combine model, simulation parameters etc., e.g. run3M_DG_10dv_optimization.py. 
    
-NOTE: Files that correspond to the best solution presented in the paper are in Simulation folder, named as: 1) CA1_PSO_GA.py (file that contains the full pipeline for simulation and optimisation of sushi belt model in CA1 morphology);
+NOTE: Files that correspond to the best solution presented in the paper can be found in Simulation folder, named as: 1) CA1_20reg_1dv_PSO_GA.py (file that contains the full pipeline for simulation and optimisation of sushi belt model in CA1 morphology);
 2) DG_density_10reg_1dv_model_dvonly.py (file that contains the final model for DG cell); 3) run3M_DG_10dv_optimization.py (optimisation script for final DG model)
 For those three files we provide more detailed annotation. Other files in this and other folders correspond to various states of the model development and are organised under the same principle
    

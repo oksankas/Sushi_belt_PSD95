@@ -2,7 +2,6 @@
 #### This is full pipeline for  simulation sushi-belt model for CA1 pyramidal cell from model initiation to experimental data mapping to the model compartment, followed with PSO (particle swarm optimisation) and GA (Genetic algorithm) optimisation.
 #### Here is the final model configuration, with individual demand values for each of 20 neuron compartments and Dva and Dvb degradations rates that are estimated from the linear regression model.####
 
-
 # If in Jupyter or within ipython run both following lines
 # If in the terminal run nrnivmodl to load Neuron engine
 # %%bash
@@ -44,7 +43,7 @@ import pandas as pd
 import sushibelt
 import time
 
-#### Defining of sushi belt model #####
+#### Defining the sushi belt model #####
 
 def sushi_system(a, b, c, d, l):
     """
