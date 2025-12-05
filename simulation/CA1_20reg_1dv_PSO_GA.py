@@ -1,6 +1,6 @@
 #### Full pipeline for  simulation sushi-belt model for CA1 pyramidal cell from model initiation to experimental data mapping to the model compartment, followed with PSO (particle swarm optimisation) and GA (Genetic algorithm) optimisation.
 #### Here is the final model configuration, with individual demand values for each of 20 neuron compartments and Dva and Dvb degradations rates that are estimated from the linear regression model.####
-
+### UP to line 207 code is adopted from Wiiliam's et al,  2016, with modifications. From line 207 - new code designed for PSD trafficking ###
 
 # If in Jupyter or within ipython run both following lines
 # If in the terminal run nrnivmodl to load Neuron engine
@@ -10,7 +10,7 @@
 import sys
 sys.path.append('../')
 
-#### Set up simulation environment ####
+#### Set up simulation environment (new code)#### 
 
 from neuron import h
 import numpy as np
@@ -27,7 +27,7 @@ FORMAT = '%(asctime)s :: %(levelname)s :: %(message)s'
 logging.basicConfig(format=FORMAT,level=logging.INFO)
 log = logging.getLogger("GA-logger")
 
-# Load morphology and other stuff
+# Load morphology and other stuff (William's et al., 2015)
 # --> SegLists: soma[2], dend[74], dend_5[37], apic[42], axon[1]
 # --> Files from Migliore & Migliore (2012)
 # --> CA1 pyramidal neuron
@@ -46,7 +46,7 @@ import pandas as pd
 import sushibelt
 import time
 
-#### Defining the sushi belt model #####
+#### Defining the sushi belt model (modified from Williams et al., 2016)#####
 
 def sushi_system(a, b, c, d, l):
     """
@@ -130,7 +130,7 @@ def sushi_system(a, b, c, d, l):
 
     return A
 
-#### Defining the trafficking solution ####
+#### Defining the trafficking solution (Copied from Williams) ####
 ## NOTE: “utarg” is a compartment level parameter, calculated from “demand” value similar to the normalized cargo protein concentration. 
 ## When aggregated back to the experimental bins its value becomes identical to Demand
 
@@ -193,6 +193,8 @@ def solve_u(u0,w,V,Vinv,t):
     PHI = np.real(V.dot(D.dot(Vinv))) # state transition matrix
     return PHI.dot(u0)                # calculate u(t)
 
+## New code: added timed simulation of linear system for Figure 3, B and C ##
+
 def sim_time(A,u0,time,nframes=10):
     # Run a simulation (log time)
     # --> this is a linear system; thus, matrix exponential provides exact solution
@@ -202,6 +204,8 @@ def sim_time(A,u0,time,nframes=10):
     t = np.logspace(-0.5,math.log10(time),nframes)
     for t_ in t: utrace.append(solve_u(u0,w,V,Vinv,t_))
     return np.array(utrace).T
+
+## Simulation of particular set of parameters##
 
 bgSignal = 1e-5
 
